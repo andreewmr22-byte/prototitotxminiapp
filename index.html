@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#07130c" />
+    <title>Equipe TX | Mini App Telegram</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="brand-row">
+          <div class="brand-mark" aria-label="Logo TX">TX</div>
+          <div>
+            <p class="eyebrow">Mini App</p>
+            <h1>Equipe TX</h1>
+          </div>
+          <div class="trust-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+              <path d="m9 12 2 2 4-5" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="search-panel" data-search-panel>
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+            <input
+              id="search-input"
+              type="search"
+              autocomplete="off"
+              placeholder="Buscar por nome, código ou categoria..."
+            />
+            <button id="clear-search" class="icon-button hidden" type="button" aria-label="Limpar busca">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <section id="inicio" class="view active" aria-labelledby="inicio-title">
+          <div class="hero-card">
+            <span class="pill">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 10.4 8.2 6 10l4.4 1.8L12 17l1.6-5.2L18 10l-4.4-1.8L12 3Z" />
+                <path d="M19 15l-.7 2.1L16 18l2.3.9L19 21l.7-2.1L22 18l-2.3-.9L19 15Z" />
+              </svg>
+              Interface limpa
+            </span>
+            <h2 id="inicio-title">Menos texto digitado. Mais ação por botão.</h2>
+            <p>
+              Protótipo para o cliente entrar, pesquisar, escolher uma opção e chamar atendimento
+              sem se perder em mensagens longas.
+            </p>
+          </div>
+
+          <div class="quick-actions" aria-label="Ações rápidas">
+            <button type="button" data-tab-target="catalogo">
+              <span class="action-icon" data-icon="search"></span>
+              <strong>Pesquisar</strong>
+              <small>Ache em segundos</small>
+            </button>
+            <button type="button" data-tab-target="perfil">
+              <span class="action-icon" data-icon="message"></span>
+              <strong>Atendimento</strong>
+              <small>Fluxo guiado</small>
+            </button>
+            <button type="button" data-tab-target="avisos">
+              <span class="action-icon" data-icon="bell"></span>
+              <strong>Avisos</strong>
+              <small>Comunicados limpos</small>
+            </button>
+          </div>
+
+          <div class="section-title">
+            <div>
+              <h2>Resultados rápidos</h2>
+              <p id="home-count">Carregando catálogo...</p>
+            </div>
+          </div>
+          <div id="home-results" class="item-list" aria-live="polite"></div>
+        </section>
+
+        <section id="catalogo" class="view" aria-labelledby="catalogo-title">
+          <div class="section-title">
+            <div>
+              <h2 id="catalogo-title">Catálogo organizado</h2>
+              <p>Use filtros ao invés de textos gigantes</p>
+            </div>
+          </div>
+          <div id="category-tabs" class="category-tabs" aria-label="Categorias"></div>
+          <div id="catalog-results" class="item-list" aria-live="polite"></div>
+        </section>
+
+        <section id="avisos" class="view" aria-labelledby="avisos-title">
+          <div class="section-title">
+            <div>
+              <h2 id="avisos-title">Avisos</h2>
+              <p>Comunicações curtas e fixas</p>
+            </div>
+          </div>
+          <div class="info-stack">
+            <article class="info-card">
+              <span class="action-icon" data-icon="bell"></span>
+              <h3>Comunicado principal</h3>
+              <p>
+                Use esta área para regras, horários, disponibilidade geral e instruções sem repetir
+                a mesma mensagem em vários chats.
+              </p>
+            </article>
+            <article class="info-card">
+              <span class="action-icon" data-icon="clock"></span>
+              <h3>Atualizações</h3>
+              <p>Toda atualização importante pode virar um card simples, com data e botão de ação.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="perfil" class="view" aria-labelledby="perfil-title">
+          <div class="section-title">
+            <div>
+              <h2 id="perfil-title">Área da equipe</h2>
+              <p>Atalhos de operação</p>
+            </div>
+          </div>
+          <div class="info-stack">
+            <article class="info-card">
+              <span class="action-icon" data-icon="user"></span>
+              <h3>Perfil do atendimento</h3>
+              <p>Aqui entram links oficiais, contato, status de suporte e identificação da equipe.</p>
+              <div class="contact-grid">
+                <button id="whatsapp-btn" type="button">WhatsApp</button>
+                <button id="telegram-btn" type="button">Telegram</button>
+              </div>
+            </article>
+            <article class="info-card">
+              <span class="action-icon" data-icon="grid"></span>
+              <h3>CRM e histórico</h3>
+              <p>Área restrita para consultar clientes e registrar interações, separada da visão pública.</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navegação principal">
+        <div class="nav-frame">
+          <button class="active" type="button" data-tab="inicio">
+            <span class="nav-icon" data-icon="home"></span>
+            Início
+          </button>
+          <button type="button" data-tab="catalogo">
+            <span class="nav-icon" data-icon="sliders"></span>
+            Buscar
+          </button>
+          <button type="button" data-tab="avisos">
+            <span class="nav-icon" data-icon="bell"></span>
+            Avisos
+          </button>
+          <button type="button" data-tab="perfil">
+            <span class="nav-icon" data-icon="user"></span>
+            Equipe
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <div id="detail-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-card">
+        <div class="modal-heading">
+          <div>
+            <p id="modal-id" class="modal-code"></p>
+            <h2 id="modal-title"></h2>
+            <p id="modal-summary"></p>
+          </div>
+          <button id="modal-close" class="icon-button" type="button" aria-label="Fechar detalhes">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+        <div id="modal-details" class="detail-list"></div>
+        <button id="request-service" class="primary-action" type="button">Solicitar atendimento</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
