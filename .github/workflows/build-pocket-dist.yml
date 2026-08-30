@@ -1,0 +1,45 @@
+name: Build POCKET TX Distribution
+
+on:
+  push:
+    branches: [pocket-tx-cloud]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Extract POCKET TX payload
+        shell: bash
+        run: |
+          mkdir -p /tmp/pocket-site
+          python3 - <<'PY'
+          import re, pathlib, base64, gzip
+          p=pathlib.Path('.github/workflows/pocket-tx-pages.yml').read_text(encoding='utf-8')
+          m=re.search(r"printf '%s' '([^']+)' \\| base64 -d \\| gunzip > site/index.html", p)
+          if not m:
+              raise SystemExit('payload not found')
+          html=gzip.decompress(base64.b64decode(m.group(1)))
+          pathlib.Path('/tmp/pocket-site/index.html').write_bytes(html)
+          pathlib.Path('/tmp/pocket-site/404.html').write_bytes(html)
+          print('POCKET TX bytes:', len(html))
+          PY
+      - name: Publish distribution branch
+        shell: bash
+        run: |
+          git config user.name 'tx-cloud-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git checkout --orphan pocket-tx-dist
+          git rm -rf .
+          cp /tmp/pocket-site/index.html ./index.html
+          cp /tmp/pocket-site/404.html ./404.html
+          touch .nojekyll
+          git add index.html 404.html .nojekyll
+          git commit -m 'Publish POCKET TX cloud distribution'
+          git push --force origin pocket-tx-dist
