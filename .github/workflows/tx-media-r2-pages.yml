@@ -1,0 +1,35 @@
+name: Public TX media R2 (static, no server)
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tx-media-r2/**"
+      - ".github/workflows/tx-media-r2-pages.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: tx-media-r2-pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload only isolated public static pilot
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: tx-media-r2
+      - name: Deploy isolated static pilot
+        id: deployment
+        uses: actions/deploy-pages@v4
