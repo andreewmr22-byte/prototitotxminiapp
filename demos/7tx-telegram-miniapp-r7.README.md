@@ -1,6 +1,11 @@
 # 7TX — Telegram Mini App R7
 
-**Estado:** frontend Telegram-native implementado; integração com bot e acervo reais ainda pendente.
+**Estado:** frontend Telegram-native implementado; publicação GitHub Pages **PASS**; vínculo ao BotFather, teste Telegram físico e acervo real **pendentes**.
+
+**URL HTTPS pública verificada:** https://andreewmr22-byte.github.io/prototitotxminiapp/7tx-r7/
+
+**Comprovação:** GitHub Actions run 41573083039 (branch `gh-pages`, commit `8bc0c156615cdcbc05d10508557eab823fba61af`) concluiu **success** e o endereço respondeu com o R7.
+
 
 ## Arquivos
 - `demos/7tx-telegram-miniapp-r7.html` — aplicativo de interface única, mobile-first, compatível com Telegram WebApp SDK.
@@ -23,8 +28,8 @@
 - **Ainda pendente:** URL HTTPS sem intersticial; vinculação do bot pelo BotFather; dados reais e autenticação no backend; teste em WebView Telegram iOS/Android.
 
 ## Como instalar no Telegram
-1. Hospedar o arquivo R7 em **domínio HTTPS próprio e direto**, sem intersticial e sem redirect inesperado. O RawCDN/GitHack pode mostrar uma tela intermediária e **não deve** ser configurado como URL final do Mini App.
-2. No **@BotFather**, selecionar o bot autorizado e configurar **Main Mini App** ou **Menu Button**, apontando para a URL HTTPS da aplicação.
+1. **Concluído:** o R7 foi publicado em `https://andreewmr22-byte.github.io/prototitotxminiapp/7tx-r7/` (sem intersticial). Não usar RawCDN/GitHack como URL final.
+2. **Pendente de sessão Telegram do proprietário:** no **@BotFather**, executar `/setmenubutton`, escolher `@dk_tx_play_navigator_bot`, definir botão `Abrir 7TX` e usar a URL acima. Opcional: `/mybots` → bot → Bot Settings → Configure Mini App → Enable Mini App para botão principal.
 3. Abrir o bot no Telegram iOS/Android e testar entrada, quatro abas, busca, detalhes, retorno e tema claro/escuro.
 4. Para dados reais, criar backend próprio que **valide `Telegram.WebApp.initData` no servidor**, incluindo integridade, expiração e permissões, antes de consultar ou modificar dados.
 5. Somente após essa prova, vincular acervo/mídias oficiais e atendimento; nenhuma integração real existe no arquivo frontend.
@@ -38,7 +43,7 @@
 - Antes de divulgar ao público, validar no Telegram físico, domínio, permissões e políticas do bot.
 
 ## Provas pendentes
-- HTTPS estável sem aviso intermediário.
+- HTTPS estável sem aviso intermediário: **PASS** (GitHub Pages).
 - Bot Telegram real identificado e vinculado.
 - Assinatura e validade do `initData` verificadas em backend.
 - Testes físicos no iPhone e Android.
