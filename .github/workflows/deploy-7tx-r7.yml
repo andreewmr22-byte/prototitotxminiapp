@@ -1,0 +1,34 @@
+name: Deploy 7TX R7 static preview (isolated)
+on:
+  push:
+    branches: [gh-pages]
+    paths:
+      - "7tx-r7/**"
+      - ".github/workflows/deploy-7tx-r7.yml"
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: 7tx-r7-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload only 7TX R7 demo
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 7tx-r7
+      - name: Deploy Pages preview
+        id: deployment
+        uses: actions/deploy-pages@v4
