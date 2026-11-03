@@ -13,6 +13,15 @@
 4. Botão Voltar nativo do Telegram e controle de tema claro/escuro.
 5. Fallback de prévia quando aberto fora do Telegram.
 
+## O que muda do R6 para o R7 (layout preservado)
+- **Visual:** leão TX, paleta verde/dourada, cards e 11 tópicos são os mesmos do R6.
+- **Experiência:** em vez das duas molduras de celular do laboratório, o Mini App R7 ocupa diretamente a tela do Telegram.
+- **SDK:** `Telegram.WebApp.ready()`, `expand()`, `BackButton` e `close()` implementados para execução dentro do Telegram.
+- **Firefox:** prévia navegável em navegador comum; abrir o HTML no Firefox **não equivale** a uma sessão Telegram.
+- **Diferenças explicadas dentro do produto:** seção retrátil `R6 → R7 · O que mudou?`, sem poluição visual.
+- **Bot já conhecido:** [@dk_tx_play_navigator_bot](https://t.me/dk_tx_play_navigator_bot) — link público de entrada verificado; não há prova de que o botão do Mini App esteja configurado.
+- **Ainda pendente:** URL HTTPS sem intersticial; vinculação do bot pelo BotFather; dados reais e autenticação no backend; teste em WebView Telegram iOS/Android.
+
 ## Como instalar no Telegram
 1. Hospedar o arquivo R7 em **domínio HTTPS próprio e direto**, sem intersticial e sem redirect inesperado. O RawCDN/GitHack pode mostrar uma tela intermediária e **não deve** ser configurado como URL final do Mini App.
 2. No **@BotFather**, selecionar o bot autorizado e configurar **Main Mini App** ou **Menu Button**, apontando para a URL HTTPS da aplicação.
