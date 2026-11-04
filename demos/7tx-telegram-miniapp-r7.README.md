@@ -11,6 +11,21 @@
 - `demos/7tx-telegram-miniapp-r7.html` — aplicativo de interface única, mobile-first, compatível com Telegram WebApp SDK.
 - `demos/7tx-laboratorio-chat-miniapp-r6.html` — laboratório R6 original, preservado.
 
+## Evolução guiada R7 — grupo, bots e preset (04/11/2026)
+
+A **mesma Mini App R7**, sem alterar o visual R6 nem criar outro aplicativo, agora contém um **Mapa de Aprendizagem** na aba Início, com seis etapas clicáveis:
+
+1. **Grupo** — prova histórica: 5 tópicos criados e 1 renomeado no 7do-TX (19/10); inventário final real com 14 tópicos. O catálogo de 11 tópicos do R7 é demonstrativo; não alegar sincronização.
+2. **Recepção** — jornada proposta: boas-vindas, regras, triagem, tópicos e suporte; execução de mensagens não ativada.
+3. **Bots** — `@dk_tx_play_navigator_bot` é o ponto de entrada; auxiliares de recepção/moderação são papéis planejados, não bots operacionais comprovados.
+4. **Mini App** — R7 publicado com Início, Tópicos, Busca e Suporte; menu `Abrir 7TX` no BotFather ainda precisa de prova física.
+5. **Observatory R2.1** — 9/9 testes Python isolados PASS; host Native Messaging no Firefox pessoal não instalado; gravação OFF.
+6. **Reprodução** — futura receita idempotente, revisada e aprovada; `dk.browser.execute` e replay permanecem OFF.
+
+A interface oferece **Anterior**, **Próxima etapa**, seleção direta das seis etapas e **Exportar roteiro**, gerando `DK_7TX_ROTEIRO_REVISAO.json` localmente. Esse arquivo é **plano para revisão**, não gravação real nem preset executável; `replay_enabled=false` e `real_events_recorded=false`. Não chama BotFather, não configura bots, não lê mensagens e não envia dados ao Telegram.
+
+**Comprovação desta alteração:** 9/9 testes simulados de navegação/exportação PASS; script JS do módulo analisado sintaticamente (PASS); HTML R7 preservado na branch `feature/7tx-telegram-miniapp-r7` e cópia publicada em `gh-pages/7tx-r7/index.html` com hash de blob idêntico. A disponibilidade pública depende de conclusão do GitHub Pages e não implica ligação com o bot.
+
 ## Fluxo implementado
 1. Início → 11 tópicos (busca e detalhes).
 2. Início → Acervo (busca, filtros e exemplos sintéticos).
