@@ -30,7 +30,7 @@ try{
   await run('Seis rotas navegáveis',async()=>{
     for(const id of ['visao','whatsapp','acervo','listas','frentes','auditoria']){
       await page.locator(`nav [data-route="${id}"]`).click();
-      await assert.equal(await page.locator(`#${id}`).isVisible(),true,id);
+      await page.locator(`#${id}`).waitFor({state:'visible',timeout:5000});
       assert.equal(await page.locator('nav [aria-current="page"]').count(),1);
     }
   });
