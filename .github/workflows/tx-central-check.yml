@@ -16,6 +16,21 @@ jobs:
         with:
           node-version: "22"
       - name: Check script syntax
-        run: node --check central/tests/validate.mjs
+        run: |
+          node --check central/tests/validate.mjs
+          node --check central/tests/browser-e2e.mjs
       - name: Run isolated Central TX checks
         run: node central/tests/validate.mjs
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install browser test dependencies
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: End-to-end browser checks
+        run: node central/tests/browser-e2e.mjs
